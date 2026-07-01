@@ -1,22 +1,20 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Button } from "@/components/ui/button";
-import { SiPython, SiReact, SiJavascript, SiMysql, SiHuggingface } from "react-icons/si";
+import { ArrowRight, Mail, Download } from "lucide-react";
+import { SiPython, SiReact, SiJavascript } from "react-icons/si";
 
 export function Hero() {
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
-  
-  // Typewriter effect
+
   useEffect(() => {
     const currentTitle = portfolioData.titles[titleIndex];
-    let typingSpeed = isDeleting ? 50 : 100;
-    
+    let typingSpeed = isDeleting ? 60 : 110;
+
     if (!isDeleting && displayedText === currentTitle) {
-      typingSpeed = 2000; // Pause at end of word
-      setTimeout(() => setIsDeleting(true), typingSpeed);
+      setTimeout(() => setIsDeleting(true), 2000);
       return;
     } else if (isDeleting && displayedText === "") {
       setIsDeleting(false);
@@ -25,8 +23,8 @@ export function Hero() {
     }
 
     const timeout = setTimeout(() => {
-      setDisplayedText((prev) => 
-        isDeleting 
+      setDisplayedText((prev) =>
+        isDeleting
           ? currentTitle.substring(0, prev.length - 1)
           : currentTitle.substring(0, prev.length + 1)
       );
@@ -39,118 +37,171 @@ export function Hero() {
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  // Tech stack floating icons
-  const icons = [
-    { Icon: SiPython, color: "#3776AB", size: 40, delay: 0, x: "10%", y: "20%" },
-    { Icon: SiReact, color: "#61DAFB", size: 50, delay: 1, x: "80%", y: "15%" },
-    { Icon: SiJavascript, color: "#F7DF1E", size: 35, delay: 2, x: "70%", y: "70%" },
-    { Icon: SiMysql, color: "#4479A1", size: 45, delay: 0.5, x: "20%", y: "60%" },
-    { Icon: SiHuggingface, color: "#FFD21E", size: 38, delay: 1.5, x: "85%", y: "45%" },
-  ];
-
   return (
-    <section id="home" className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden pt-20">
-      {/* Background Particles/Dots */}
-      <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,var(--primary)_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.05] dark:opacity-[0.1]" />
+    <section id="home" className="min-h-[100dvh] flex items-center pt-24 pb-12">
+      <div className="container mx-auto px-4 md:px-6">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-      {/* Floating Icons */}
-      {icons.map((item, i) => (
-        <motion.div
-          key={i}
-          className="absolute z-0 opacity-20 dark:opacity-30 pointer-events-none"
-          style={{ left: item.x, top: item.y }}
-          animate={{
-            y: ["0%", "-30%", "0%"],
-            rotate: [0, 10, -10, 0],
-          }}
-          transition={{
-            duration: 5 + i * 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: item.delay,
-          }}
-        >
-          <item.Icon size={item.size} color={item.color} />
-        </motion.div>
-      ))}
+          {/* ── Left column ── */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 border-2 border-foreground px-4 py-2 rounded-none mb-8 bg-background font-mono text-sm font-bold">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              VTU Computer Science · B.E 2022–2026
+            </div>
 
-      <div className="container mx-auto px-4 md:px-6 relative z-10 flex flex-col items-center text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-4xl mx-auto"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary mb-6 text-sm font-medium border border-primary/20">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-            </span>
-            Available for new opportunities
-          </div>
-          
-          <h1 className="text-4xl md:text-6xl lg:text-8xl font-black tracking-tight mb-4">
-            Hi, I'm <br className="md:hidden" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-500">
-              {portfolioData.name}
-            </span>
-          </h1>
-          
-          <div className="h-12 md:h-16 flex items-center justify-center mb-6">
-            <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold text-muted-foreground">
-              A{" "}
-              <span className="text-foreground">
+            {/* Name */}
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-[0.95] mb-6">
+              {portfolioData.name.split(" ")[0]}<br />
+              <span className="text-primary">{portfolioData.name.split(" ")[1]}</span>
+            </h1>
+
+            {/* Typewriter subtitle */}
+            <div className="font-mono text-xl md:text-2xl text-muted-foreground mb-6 h-8">
+              &gt;_{" "}
+              <span className="text-foreground font-bold">
                 {displayedText}
-                <span className="animate-pulse">|</span>
               </span>
-            </h2>
-          </div>
+              <span className="animate-pulse text-primary font-bold">|</span>
+            </div>
 
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-            {portfolioData.summary}
-          </p>
+            {/* Summary */}
+            <p className="font-mono text-sm md:text-base text-muted-foreground leading-relaxed mb-10 max-w-lg">
+              {portfolioData.summary}
+            </p>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Button 
-              size="lg" 
-              className="rounded-full px-8 shadow-lg hover:shadow-primary/25 transition-all hover:-translate-y-1 text-base h-12"
-              onClick={() => scrollTo("#projects")}
-            >
-              View Projects
-            </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="rounded-full px-8 bg-background hover:bg-muted transition-all hover:-translate-y-1 text-base h-12 border-2"
-              asChild
-            >
-              <a href={portfolioData.resumeUrl} target="_blank" rel="noopener noreferrer">
-                Download Resume
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={() => scrollTo("#projects")}
+                className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-black border-2 border-foreground text-base hover:shadow-[4px_4px_0_0_rgba(0,0,0,0.85)] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+              >
+                View Projects <ArrowRight className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => scrollTo("#contact")}
+                className="flex items-center gap-2 px-6 py-3 bg-background text-foreground font-black border-2 border-foreground text-base hover:bg-secondary hover:shadow-[4px_4px_0_0_rgba(0,0,0,0.85)] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+              >
+                <Mail className="h-4 w-4" /> Contact Me
+              </button>
+              <a
+                href={portfolioData.resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-6 py-3 bg-background text-foreground font-black border-2 border-border text-base hover:border-foreground hover:shadow-[4px_4px_0_0_rgba(0,0,0,0.85)] hover:-translate-x-0.5 hover:-translate-y-0.5 transition-all"
+              >
+                <Download className="h-4 w-4" /> Resume
               </a>
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="lg" 
-              className="rounded-full px-8 hover:-translate-y-1 transition-all text-base h-12"
-              onClick={() => scrollTo("#contact")}
+            </div>
+          </motion.div>
+
+          {/* ── Right column — visual card ── */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="relative hidden lg:block"
+          >
+            {/* Main card */}
+            <div className="border-2 border-foreground bg-card overflow-hidden shadow-[8px_8px_0_0_rgba(0,0,0,0.9)] dark:shadow-[8px_8px_0_0_rgba(245,197,24,0.4)]">
+              {/* Terminal header */}
+              <div className="flex items-center gap-2 px-4 py-3 border-b-2 border-foreground bg-foreground">
+                <div className="w-3 h-3 rounded-full bg-red-400" />
+                <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                <div className="w-3 h-3 rounded-full bg-green-400" />
+                <span className="ml-3 text-background font-mono text-xs">arpita@dev:~$</span>
+              </div>
+
+              {/* Terminal body */}
+              <div className="p-6 font-mono text-sm bg-foreground/5">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="space-y-1.5"
+                >
+                  <p><span className="text-primary font-bold">$</span> <span className="text-muted-foreground">whoami</span></p>
+                  <p className="text-foreground font-bold pl-3">Python Developer &amp; Generative AI Engineer</p>
+                  <p className="mt-4"><span className="text-primary font-bold">$</span> <span className="text-muted-foreground">cat skills.py</span></p>
+                  <div className="pl-3 space-y-0.5 text-foreground">
+                    <p><span className="text-purple-500">skills</span> = &#123;</p>
+                    <p className="pl-4"><span className="text-blue-500">"languages"</span>: [<span className="text-green-600">"Python"</span>, <span className="text-green-600">"JS"</span>],</p>
+                    <p className="pl-4"><span className="text-blue-500">"frontend"</span>: [<span className="text-green-600">"HTML"</span>, <span className="text-green-600">"CSS"</span>, <span className="text-green-600">"React"</span>],</p>
+                    <p className="pl-4"><span className="text-blue-500">"ai_tools"</span>: [<span className="text-green-600">"ChatGPT"</span>, <span className="text-green-600">"Gemini"</span>],</p>
+                    <p className="pl-4"><span className="text-blue-500">"status"</span>: <span className="text-primary font-bold">"Available for hire"</span></p>
+                    <p>&#125;</p>
+                  </div>
+                  <p className="mt-4"><span className="text-primary font-bold">$</span> <span className="text-muted-foreground">python main.py</span></p>
+                  <p className="pl-3 text-green-500 font-bold">→ Building something awesome... ✓</p>
+                  <p className="animate-pulse text-primary font-bold">▋</p>
+                </motion.div>
+              </div>
+
+              {/* Tech stack footer */}
+              <div className="px-6 py-4 border-t-2 border-foreground bg-background flex items-center gap-3">
+                <span className="text-xs font-mono text-muted-foreground font-bold uppercase tracking-wider">Built with</span>
+                <SiPython className="h-5 w-5 text-blue-500" />
+                <SiReact className="h-5 w-5 text-cyan-400" />
+                <SiJavascript className="h-5 w-5 text-yellow-400" />
+              </div>
+            </div>
+
+            {/* Floating info chips */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+              className="absolute -top-4 -right-4 bg-primary border-2 border-foreground px-4 py-2 font-black text-primary-foreground text-sm shadow-[3px_3px_0_0_rgba(0,0,0,0.9)]"
             >
-              Contact Me
-            </Button>
-          </div>
+              ✦ Available for Hire
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0 }}
+              className="absolute -bottom-4 -left-4 bg-background border-2 border-foreground px-4 py-2 font-black text-foreground text-sm shadow-[3px_3px_0_0_rgba(0,0,0,0.9)]"
+            >
+              B.E 2022 – 2026
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.2 }}
+              className="absolute top-1/2 -right-6 -translate-y-1/2 bg-foreground text-background border-2 border-foreground px-3 py-2 font-black text-xs shadow-[3px_3px_0_0_hsl(var(--primary))] rotate-90"
+            >
+              Gen AI
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="flex justify-center mt-16 lg:mt-20"
+        >
+          <button
+            onClick={() => scrollTo("#about")}
+            className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary transition-colors group"
+          >
+            <span className="font-mono text-xs tracking-widest uppercase">Scroll</span>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="w-5 h-8 border-2 border-current rounded-full flex justify-center pt-1.5"
+            >
+              <div className="w-1 h-2 bg-current rounded-full" />
+            </motion.div>
+          </button>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div 
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 cursor-pointer text-muted-foreground hover:text-foreground transition-colors"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        onClick={() => scrollTo("#about")}
-      >
-        <div className="w-[30px] h-[50px] rounded-full border-2 border-current flex justify-center pt-2">
-          <div className="w-1.5 h-3 bg-current rounded-full" />
-        </div>
-      </motion.div>
     </section>
   );
 }

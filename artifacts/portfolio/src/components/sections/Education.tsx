@@ -3,19 +3,45 @@ import { motion, useInView } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { GraduationCap, Calendar, MapPin } from "lucide-react";
 
+function AnimatedGPA({ target }: { target: number }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!isInView) return;
+    let start = 0;
+    const steps = 60;
+    const timer = setInterval(() => {
+      start++;
+      const eased = 1 - Math.pow(1 - start / steps, 3);
+      setValue(eased * target);
+      if (start >= steps) { clearInterval(timer); setValue(target); }
+    }, 1500 / steps);
+    return () => clearInterval(timer);
+  }, [isInView, target]);
+
+  return (
+    <div ref={ref} className="text-5xl font-black font-mono text-primary tracking-tighter">
+      {value.toFixed(1)}
+    </div>
+  );
+}
+
 export function Education() {
   return (
-    <section id="education" className="py-24 md:py-32 bg-muted/30 relative">
+    <section id="education" className="py-24 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 md:text-center"
+          transition={{ duration: 0.5 }}
+          className="mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Education</h2>
-          <div className="h-1 w-20 bg-primary rounded-full md:mx-auto" />
+          <p className="font-mono text-sm font-bold text-primary uppercase tracking-widest mb-2">// 07</p>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight">Education</h2>
+          <div className="h-1 w-24 bg-primary mt-4" />
         </motion.div>
 
         <div className="max-w-3xl mx-auto">
@@ -26,38 +52,38 @@ export function Education() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="bg-card border border-card-border rounded-2xl p-6 md:p-10 shadow-lg relative overflow-hidden"
+              className="border-2 border-foreground bg-card shadow-[6px_6px_0_0_rgba(0,0,0,0.85)] dark:shadow-[6px_6px_0_0_hsl(var(--primary))]"
             >
-              {/* Decorative side border */}
-              <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-primary" />
-              
-              <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 relative z-10">
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2.5 bg-primary/10 text-primary rounded-lg">
-                      <GraduationCap className="h-6 w-6" />
-                    </div>
-                    <h3 className="text-xl md:text-2xl font-bold text-foreground leading-tight">
-                      {edu.degree}
-                    </h3>
-                  </div>
-                  
-                  <div className="text-lg text-muted-foreground font-medium mb-4 flex items-center gap-2">
-                    <MapPin className="h-4 w-4 shrink-0" />
-                    {edu.university}
-                  </div>
-                  
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground font-mono bg-secondary w-fit px-3 py-1.5 rounded-md border border-border">
-                    <Calendar className="h-4 w-4" />
-                    {edu.period}
-                  </div>
-                </div>
+              {/* Left accent bar */}
+              <div className="flex">
+                <div className="w-2 bg-primary shrink-0" />
+                <div className="p-8 md:p-10 flex-1">
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="p-2 bg-primary border-2 border-foreground">
+                          <GraduationCap className="h-6 w-6 text-primary-foreground" />
+                        </div>
+                        <h3 className="text-xl md:text-2xl font-black leading-tight">{edu.degree}</h3>
+                      </div>
 
-                <div className="md:w-32 flex flex-col items-start md:items-end justify-center pt-4 md:pt-0 border-t md:border-t-0 md:border-l border-border md:pl-8">
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground font-semibold mb-1">
-                    CGPA
+                      <div className="font-mono text-sm text-muted-foreground mb-3 flex items-center gap-2">
+                        <MapPin className="h-4 w-4 shrink-0 text-primary" />
+                        {edu.university}
+                      </div>
+
+                      <div className="inline-flex items-center gap-2 font-mono text-sm border-2 border-foreground/30 bg-secondary px-3 py-1.5 font-bold">
+                        <Calendar className="h-4 w-4" />
+                        {edu.period}
+                      </div>
+                    </div>
+
+                    <div className="md:pl-8 md:border-l-2 border-foreground/20 flex flex-col items-start md:items-end">
+                      <p className="font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">CGPA</p>
+                      <AnimatedGPA target={parseFloat(edu.cgpa)} />
+                      <p className="font-mono text-xs text-muted-foreground mt-1">/ 10.0</p>
+                    </div>
                   </div>
-                  <AnimatedGPA target={parseFloat(edu.cgpa)} />
                 </div>
               </div>
             </motion.div>
@@ -65,39 +91,5 @@ export function Education() {
         </div>
       </div>
     </section>
-  );
-}
-
-function AnimatedGPA({ target }: { target: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const [value, setValue] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      let start = 0;
-      const duration = 1500;
-      const incrementTime = 20;
-      const steps = duration / incrementTime;
-      const step = target / steps;
-      
-      const timer = setInterval(() => {
-        start += step;
-        if (start >= target) {
-          setValue(target);
-          clearInterval(timer);
-        } else {
-          setValue(start);
-        }
-      }, incrementTime);
-      
-      return () => clearInterval(timer);
-    }
-  }, [isInView, target]);
-
-  return (
-    <div ref={ref} className="text-4xl md:text-5xl font-black text-primary font-mono tracking-tighter">
-      {value.toFixed(1)}
-    </div>
   );
 }

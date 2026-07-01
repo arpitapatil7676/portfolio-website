@@ -1,85 +1,123 @@
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Terminal, Code, Cpu } from "lucide-react";
 
 export function About() {
   return (
-    <section id="about" className="py-24 md:py-32 relative">
+    <section id="about" className="py-24 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
+        {/* Section heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 md:text-center"
+          transition={{ duration: 0.5 }}
+          className="mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">About Me</h2>
-          <div className="h-1 w-20 bg-primary rounded-full md:mx-auto" />
+          <p className="font-mono text-sm font-bold text-primary uppercase tracking-widest mb-2">// 01</p>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight">About Me</h2>
+          <div className="h-1 w-24 bg-primary mt-4" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
+          {/* Left — text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <h3 className="text-2xl font-bold mb-6 font-mono text-primary flex items-center gap-2">
-              <Terminal className="h-6 w-6" /> root@arpita:~# whoami
-            </h3>
-            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+            <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed font-mono">
               <p>
-                I am a detail-oriented developer specializing in <strong className="text-foreground">Python</strong> and <strong className="text-foreground">Generative AI</strong>. My passion lies in architecting systems that are not just functional, but intelligent and forward-thinking.
+                I'm a detail-oriented developer specialising in{" "}
+                <strong className="text-foreground">Python</strong> and{" "}
+                <strong className="text-foreground">Generative AI</strong>. I love building systems
+                that are not just functional — but intelligent and forward-thinking.
               </p>
               <p>
-                Whether I'm building multi-agent AI workflows, optimizing databases, or crafting seamless user experiences with React, I approach every problem with a deep curiosity and a commitment to engineering excellence.
+                Whether I'm architecting multi-agent AI workflows, writing clean Python backends,
+                or crafting responsive interfaces with HTML, CSS, and React, I approach every
+                problem with curiosity and a commitment to quality.
+              </p>
+              <p>
+                I'm a fresh graduate (B.E 2026) eager to grow alongside a team that values
+                impactful software and continuous learning.
               </p>
             </div>
-            
+
+            {/* Tags */}
             <div className="mt-10 flex flex-wrap gap-3">
               {portfolioData.aboutTags.map((tag, i) => (
-                <span 
-                  key={i} 
-                  className="px-4 py-2 rounded-full bg-secondary text-secondary-foreground text-sm font-medium border border-border"
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.05 * i }}
+                  className="px-4 py-2 border-2 border-foreground bg-background font-mono text-sm font-bold hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
                 >
                   {tag}
-                </span>
+                </motion.span>
               ))}
             </div>
           </motion.div>
 
+          {/* Right — code card */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="relative"
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <div className="absolute -inset-4 bg-gradient-to-tr from-primary/20 to-purple-500/20 rounded-2xl blur-2xl -z-10" />
-            <div className="bg-card border border-card-border rounded-xl shadow-xl overflow-hidden">
-              <div className="flex items-center px-4 py-3 border-b border-card-border bg-muted/50">
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                  <div className="w-3 h-3 rounded-full bg-green-500" />
-                </div>
-                <div className="mx-auto text-xs font-mono text-muted-foreground">main.py</div>
+            <div className="border-2 border-foreground bg-card shadow-[6px_6px_0_0_rgba(0,0,0,0.85)] dark:shadow-[6px_6px_0_0_hsl(var(--primary))]">
+              {/* Header bar */}
+              <div className="flex items-center gap-2 px-4 py-3 border-b-2 border-foreground bg-foreground">
+                <div className="w-3 h-3 rounded-full bg-red-400" />
+                <div className="w-3 h-3 rounded-full bg-primary" />
+                <div className="w-3 h-3 rounded-full bg-green-400" />
+                <span className="ml-2 font-mono text-xs text-background/80">developer.py</span>
               </div>
-              <div className="p-6 font-mono text-sm overflow-x-auto whitespace-pre">
-                <span className="text-purple-500 dark:text-purple-400">class</span> <span className="text-blue-500 dark:text-blue-400">Developer</span>:
-                <br />    <span className="text-purple-500 dark:text-purple-400">def</span> <span className="text-blue-500 dark:text-blue-400">__init__</span>(<span className="text-orange-500 dark:text-orange-400">self</span>):
-                <br />        <span className="text-orange-500 dark:text-orange-400">self</span>.name = <span className="text-green-600 dark:text-green-400">"Arpita Patil"</span>
-                <br />        <span className="text-orange-500 dark:text-orange-400">self</span>.roles = [<span className="text-green-600 dark:text-green-400">"Python Dev"</span>, <span className="text-green-600 dark:text-green-400">"Gen AI Eng"</span>]
-                <br />        <span className="text-orange-500 dark:text-orange-400">self</span>.coffee_status = <span className="text-green-600 dark:text-green-400">"Full"</span>
+
+              {/* Code block */}
+              <div className="p-6 font-mono text-sm leading-relaxed">
+                <p>
+                  <span className="text-purple-500 dark:text-purple-400">class</span>{" "}
+                  <span className="text-blue-500 dark:text-blue-400">Developer</span>:
+                </p>
+                <p className="pl-4">
+                  <span className="text-purple-500 dark:text-purple-400">def</span>{" "}
+                  <span className="text-blue-500 dark:text-blue-400">__init__</span>(self):
+                </p>
+                <p className="pl-8">
+                  self.name = <span className="text-green-600 dark:text-green-400">"Arpita Patil"</span>
+                </p>
+                <p className="pl-8">
+                  self.roles = [<span className="text-green-600 dark:text-green-400">"Python Dev"</span>,{" "}
+                  <span className="text-green-600 dark:text-green-400">"Gen AI Eng"</span>]
+                </p>
+                <p className="pl-8">
+                  self.location = <span className="text-green-600 dark:text-green-400">"India"</span>
+                </p>
+                <p className="pl-8">
+                  self.open_to_work = <span className="text-primary font-bold">True</span>
+                </p>
                 <br />
-                <br />    <span className="text-purple-500 dark:text-purple-400">def</span> <span className="text-blue-500 dark:text-blue-400">build_future</span>(<span className="text-orange-500 dark:text-orange-400">self</span>):
-                <br />        <span className="text-purple-500 dark:text-purple-400">while</span> <span className="text-orange-500 dark:text-orange-400">True</span>:
-                <br />            code.write()
-                <br />            <span className="text-purple-500 dark:text-purple-400">if</span> code.has_bugs():
-                <br />                code.refactor()
-                <br />            <span className="text-purple-500 dark:text-purple-400">else</span>:
-                <br />                deploy()
-                <br />                break
+                <p className="pl-4">
+                  <span className="text-purple-500 dark:text-purple-400">def</span>{" "}
+                  <span className="text-blue-500 dark:text-blue-400">build</span>(self):
+                </p>
+                <p className="pl-8">
+                  <span className="text-purple-500 dark:text-purple-400">while</span>{" "}
+                  <span className="text-primary font-bold">True</span>:
+                </p>
+                <p className="pl-12">code.write()</p>
+                <p className="pl-12">
+                  <span className="text-purple-500 dark:text-purple-400">if</span> bugs:
+                </p>
+                <p className="pl-16">code.refactor()</p>
+                <p className="pl-12">
+                  <span className="text-purple-500 dark:text-purple-400">else</span>:
+                </p>
+                <p className="pl-16">deploy() <span className="text-green-500">✓</span></p>
               </div>
             </div>
           </motion.div>
