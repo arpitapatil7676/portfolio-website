@@ -24,14 +24,13 @@ export const portfolioData = {
     programming: [
       { name: "Python", level: 95 },
       { name: "JavaScript", level: 85 },
-      { name: "HTML/CSS", level: 90 },
       { name: "React", level: 80 }
     ],
-    genAI: ["LLMs", "Prompt Engineering", "AI Automation", "RAG"],
-    tools: ["ChatGPT", "Gemini", "Claude", "Git/GitHub", "VS Code"],
-    databases: ["MySQL", "PostgreSQL"],
-    core: ["Data Structures", "Algorithms", "Object-Oriented Programming"],
-    soft: ["Communication", "Teamwork", "Adaptability", "Time Management"]
+    genAI: ["Prompt Engineering", "AI Model Interaction", "AI Output Evaluation"],
+    tools: ["ChatGPT", "Google Gemini", "Claude"],
+    databases: ["MySQL"],
+    core: ["Problem Solving", "Scripting", "Basic Data Handling"],
+    soft: ["Communication", "Analytical Thinking", "Attention to Detail"]
   },
   experience: [
     {
