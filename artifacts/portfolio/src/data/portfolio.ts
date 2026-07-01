@@ -7,7 +7,7 @@ export const portfolioData = {
     "Problem Solver",
   ],
   summary:
-    "Python Developer with a strong foundation in Python Programming, Generative AI, and AI-assisted technologies. Experienced in developing scalable Python applications, writing efficient and maintainable code, and building responsive user interfaces using HTML, CSS, JavaScript, and React. Familiar with Prompt Engineering, AI model interaction, and AI response evaluation.",
+    "Python Developer with a strong foundation in Python Programming, Generative AI, and AI-assisted technologies. Experienced in building scalable Python applications and responsive user interfaces using HTML, CSS, JavaScript, and React. Demonstrated impact through AI-driven and automation projects, achieving up to 85% reduction in research time, 30% improvement in product rating reliability, and 25% reduction in application errors. Skilled in Prompt Engineering, AI model interaction, AI response evaluation, and developing reliable AI-powered applications.",
   email: "arpitapatil7676@gmail.com",
   linkedin: "https://linkedin.com/in/arpita-patil",
   github: "https://github.com/arpita-patil",
@@ -53,10 +53,11 @@ export const portfolioData = {
   projects: [
     {
       title: "Sentiment-Based E-Commerce Product Rating System",
+      period: "Aug 2025 – Feb 2026",
       tech: ["Python", "React", "MySQL"],
       description:
-        "Developed an AI-driven sentiment analysis system for 100+ customer reviews. Classifies feedback into Positive, Negative, and Neutral categories to improve product ratings and reduce manual review effort.",
-      features: ["AI Sentiment Analysis", "Review Classification", "Real-time Dashboard", "Product Rating", "Responsive UI"],
+        "Developed an AI-driven sentiment analysis system for 100+ customer reviews, improving sentiment detection accuracy by 25%. Improved product rating reliability by 30% by classifying feedback across 50+ products. Automated the review verification process, reducing manual effort by 40% and doubling review processing speed.",
+      features: ["AI Sentiment Analysis", "Review Classification", "100+ Reviews", "50+ Products", "Automated Verification"],
       metrics: [
         { label: "Accuracy", value: "+25%" },
         { label: "Reliability", value: "+30%" },
@@ -64,29 +65,31 @@ export const portfolioData = {
         { label: "Speed", value: "2x" },
       ],
       github: "https://github.com",
-      live: "https://example.com",
+      live: "",
     },
     {
       title: "Multi-Agent AI Research System",
+      period: "Apr 2026 – Jun 2026",
       tech: ["Python", "Generative AI", "LLMs"],
       description:
-        "Built a multi-agent AI system to automate web search, content extraction, and report generation. Collects and analyzes data from 5+ online sources with 100% automated LLM-based evaluation.",
-      features: ["Multi-Agent Workflow", "Automated Research", "Content Extraction", "Report Generation", "LLM Evaluation"],
+        "Developed a multi-agent AI system to automate web search, content extraction, and report generation, reducing research time by 85%. Collected and analyzed data from 5+ online sources, enabling automated report generation and LLM-based response evaluation. Built an end-to-end research pipeline, eliminating manual intervention and increasing research throughput by 6x.",
+      features: ["Multi-Agent Workflow", "Web Search Automation", "Content Extraction", "LLM Evaluation", "End-to-End Pipeline"],
       metrics: [
         { label: "Research Time", value: "-85%" },
-        { label: "Automation", value: "100%" },
-        { label: "Throughput", value: "6x" },
         { label: "Sources/Query", value: "5+" },
+        { label: "Throughput", value: "6x" },
+        { label: "Automation", value: "100%" },
       ],
       github: "https://github.com",
-      live: "https://example.com",
+      live: "",
     },
     {
       title: "Personal Portfolio Website",
+      period: "2026",
       tech: ["HTML", "CSS", "JavaScript", "React", "Framer Motion"],
       description:
-        "Designed and developed this portfolio website from scratch using HTML, CSS, and JavaScript with React. Features glassmorphism UI, Framer Motion animations, dark mode, animated counters, 3D tilt cards, and a live contact form — built to stand out among the crowd.",
-      features: ["Framer Motion Animations", "Dark Mode Toggle", "3D Tilt Cards", "Typewriter Effect", "Live Contact Form", "Fully Responsive"],
+        "Designed and developed this portfolio website from scratch using HTML, CSS, and JavaScript with React. Features dark/light mode, Framer Motion animations, a typewriter effect, animated stat counters, hard-shadow editorial cards, and a live contact form — built to stand out among the crowd.",
+      features: ["Framer Motion Animations", "Dark / Light Mode", "Typewriter Effect", "Live Contact Form", "Editorial Design", "Fully Responsive"],
       metrics: [
         { label: "Sections", value: "8+" },
         { label: "Animations", value: "20+" },

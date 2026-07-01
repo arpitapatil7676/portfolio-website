@@ -93,7 +93,10 @@ export function Projects() {
                   </div>
                 </div>
 
-                <h3 className="text-xl font-black mb-3 leading-tight">{project.title}</h3>
+                <h3 className="text-xl font-black mb-1 leading-tight">{project.title}</h3>
+                {"period" in project && (project as any).period && (
+                  <p className="font-mono text-xs text-primary font-bold mb-3">{(project as any).period}</p>
+                )}
 
                 {/* Tech badges */}
                 <div className="flex flex-wrap gap-1.5">
