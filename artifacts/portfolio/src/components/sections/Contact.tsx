@@ -1,35 +1,74 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Mail, Phone, MapPin, Send, Github, Linkedin, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
+
 export function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
-      (e.target as HTMLFormElement).reset();
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    if (!WEB3FORMS_KEY) {
       toast({
-        title: "Message Sent Successfully!",
-        description: "Thank you for reaching out. I will get back to you soon.",
-        variant: "default",
+        title: "Not configured yet",
+        description:
+          "Contact form email delivery is not set up. Please reach out directly at " + portfolioData.email,
+        variant: "destructive",
       });
-    }, 1500);
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          name: formData.get("name"),
+          email: formData.get("email"),
+          subject: formData.get("subject"),
+          message: formData.get("message"),
+          from_name: "Portfolio Contact Form",
+        }),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        form.reset();
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for reaching out — I'll get back to you soon.",
+        });
+      } else {
+        throw new Error(data.message ?? "Submission failed");
+      }
+    } catch {
+      toast({
+        title: "Failed to send",
+        description: "Something went wrong. Please email me directly at " + portfolioData.email,
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section id="contact" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Decorative gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-primary/5 pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -48,8 +87,6 @@ export function Contact() {
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-8 max-w-6xl mx-auto">
-          
-          {/* Contact Info (2 columns width) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -59,7 +96,7 @@ export function Contact() {
           >
             <div className="bg-card border border-card-border rounded-2xl p-8 shadow-lg">
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-              
+
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="p-3 rounded-full bg-primary/10 text-primary shrink-0">
@@ -79,7 +116,7 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground font-semibold uppercase tracking-wider mb-1">Phone</p>
-                    <a href={`tel:${portfolioData.phone.replace(/[^0-9+]/g, '')}`} className="text-foreground hover:text-primary transition-colors font-medium">
+                    <a href={`tel:${portfolioData.phone.replace(/[^0-9+]/g, "")}`} className="text-foreground hover:text-primary transition-colors font-medium">
                       {portfolioData.phone}
                     </a>
                   </div>
@@ -114,7 +151,6 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* Contact Form (3 columns width) */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -128,31 +164,32 @@ export function Contact() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-semibold text-muted-foreground">Full Name</label>
-                    <Input id="name" required placeholder="John Doe" className="bg-background" />
+                    <Input id="name" name="name" required placeholder="John Doe" className="bg-background" />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-semibold text-muted-foreground">Email Address</label>
-                    <Input id="email" type="email" required placeholder="john@example.com" className="bg-background" />
+                    <Input id="email" name="email" type="email" required placeholder="john@example.com" className="bg-background" />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <label htmlFor="subject" className="text-sm font-semibold text-muted-foreground">Subject</label>
-                  <Input id="subject" required placeholder="How can I help you?" className="bg-background" />
+                  <Input id="subject" name="subject" required placeholder="How can I help you?" className="bg-background" />
                 </div>
-                
+
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-semibold text-muted-foreground">Message</label>
-                  <Textarea 
-                    id="message" 
-                    required 
-                    placeholder="Tell me about your project..." 
-                    className="min-h-[150px] bg-background resize-none" 
+                  <Textarea
+                    id="message"
+                    name="message"
+                    required
+                    placeholder="Tell me about your project..."
+                    className="min-h-[150px] bg-background resize-none"
                   />
                 </div>
 
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   disabled={isSubmitting}
                   className="w-full md:w-auto px-8 h-12 rounded-full text-base flex items-center gap-2 group"
                 >
@@ -162,7 +199,6 @@ export function Contact() {
               </form>
             </div>
           </motion.div>
-
         </div>
       </div>
     </section>
