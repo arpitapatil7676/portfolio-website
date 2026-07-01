@@ -9,7 +9,6 @@ export const portfolioData = {
   summary:
     "Python Developer with a strong foundation in Python Programming, Generative AI, and AI-assisted technologies. Experienced in developing scalable Python applications, writing efficient and maintainable code, and building responsive user interfaces using HTML, CSS, JavaScript, and React. Familiar with Prompt Engineering, AI model interaction, and AI response evaluation.",
   email: "arpitapatil7676@gmail.com",
-  phone: "+91-6361239720",
   linkedin: "https://linkedin.com/in/arpita-patil",
   github: "https://github.com/arpita-patil",
   resumeUrl: "/resume.pdf",

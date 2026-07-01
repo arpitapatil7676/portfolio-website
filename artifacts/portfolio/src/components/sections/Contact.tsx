@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Mail, Phone, MapPin, Send, Github, Linkedin } from "lucide-react";
+import { Mail, MapPin, Send, Github, Linkedin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_KEY as string | undefined;
@@ -82,7 +82,6 @@ export function Contact() {
               <div className="space-y-6">
                 {[
                   { icon: Mail, label: "Email", value: portfolioData.email, href: `mailto:${portfolioData.email}` },
-                  { icon: Phone, label: "Phone", value: portfolioData.phone, href: `tel:${portfolioData.phone.replace(/[^0-9+]/g, "")}` },
                   { icon: MapPin, label: "Location", value: "India", href: null },
                 ].map(({ icon: Icon, label, value, href }) => (
                   <div key={label} className="flex items-start gap-4">
