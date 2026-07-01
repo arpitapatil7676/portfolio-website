@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
 import { ExternalLink, Github } from "lucide-react";
@@ -6,31 +6,34 @@ import { ExternalLink, Github } from "lucide-react";
 function AnimatedCounter({ value, label }: { value: string; label: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
-  const match = value.match(/([^0-9]*)([0-9.]+)([^0-9]*)/);
-  const prefix = match ? match[1] : "";
-  const num = match ? parseFloat(match[2]) : 0;
-  const suffix = match ? match[3] : value;
-  const [count, setCount] = useState(0);
+
+  // Parse once — stable values so they're safe as effect deps
+  const parsed = useMemo(() => {
+    const m = value.match(/^([^0-9]*)([0-9.]+)([^0-9]*)$/);
+    if (!m) return null;
+    return { prefix: m[1], num: parseFloat(m[2]), suffix: m[3] };
+  }, [value]);
+
+  const [display, setDisplay] = useState(parsed ? `${parsed.prefix}0${parsed.suffix}` : value);
 
   useEffect(() => {
-    if (isInView && match) {
-      let start = 0;
-      const steps = 60;
-      const timer = setInterval(() => {
-        start++;
-        const eased = 1 - Math.pow(1 - start / steps, 3);
-        setCount(eased * num);
-        if (start >= steps) { clearInterval(timer); setCount(num); }
-      }, 1500 / steps);
-      return () => clearInterval(timer);
-    }
-  }, [isInView, num, match]);
+    if (!isInView || !parsed) return;
+    const { prefix, num, suffix } = parsed;
+    const steps = 60;
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      const eased = 1 - Math.pow(1 - step / steps, 3);
+      const val = eased * num;
+      setDisplay(`${prefix}${Number.isInteger(num) ? Math.round(val) : Math.round(val * 10) / 10}${suffix}`);
+      if (step >= steps) { clearInterval(timer); setDisplay(value); }
+    }, 1500 / steps);
+    return () => clearInterval(timer);
+  }, [isInView, parsed, value]);
 
   return (
     <div ref={ref} className="flex flex-col items-center text-center">
-      <div className="text-xl font-black font-mono text-primary">
-        {match ? <>{prefix}{Math.round(count * 10) / 10}{suffix}</> : value}
-      </div>
+      <div className="text-xl font-black font-mono text-primary tabular-nums">{display}</div>
       <div className="text-xs font-mono text-muted-foreground uppercase tracking-wider mt-1">{label}</div>
     </div>
   );
