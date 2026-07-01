@@ -4,9 +4,10 @@ export const portfolioData = {
     "Python Developer",
     "Generative AI Developer",
     "AI Enthusiast",
-    "Problem Solver"
+    "Problem Solver",
   ],
-  summary: "A passionate Python and Generative AI Developer dedicated to building intelligent, efficient, and scalable solutions. I blend deep technical expertise with a sharp eye for modern architecture to create products that make an impact.",
+  summary:
+    "Python Developer with a strong foundation in Python Programming, Generative AI, and AI-assisted technologies. Experienced in developing scalable Python applications, writing efficient and maintainable code, and building responsive user interfaces using HTML, CSS, JavaScript, and React. Familiar with Prompt Engineering, AI model interaction, and AI response evaluation.",
   email: "arpitapatil7676@gmail.com",
   phone: "+91-6361239720",
   linkedin: "https://linkedin.com/in/arpita-patil",
@@ -18,19 +19,23 @@ export const portfolioData = {
     "AI Automation",
     "Problem Solving",
     "Continuous Learning",
-    "Team Collaboration"
+    "Team Collaboration",
+  ],
+  stats: [
+    { label: "Years of Learning", value: "4+" },
+    { label: "Projects Delivered", value: "3+" },
+    { label: "Errors Reduced", value: "25%" },
+    { label: "AI Tools Mastered", value: "3+" },
   ],
   skills: {
     programming: [
       { name: "Python", level: 95 },
       { name: "JavaScript", level: 85 },
-      { name: "React", level: 80 }
     ],
-    genAI: ["Prompt Engineering", "AI Model Interaction", "AI Output Evaluation"],
+    frontend: ["HTML", "CSS", "React"],
+    genAI: ["Prompt Engineering", "AI Model Interaction", "AI Response Evaluation"],
     tools: ["ChatGPT", "Google Gemini", "Claude"],
-    databases: ["MySQL"],
-    core: ["Problem Solving", "Scripting", "Basic Data Handling"],
-    soft: ["Communication", "Analytical Thinking", "Attention to Detail"]
+    soft: ["Communication", "Problem Solving", "Analytical Thinking", "Attention to Detail"],
   },
   experience: [
     {
@@ -40,67 +45,79 @@ export const portfolioData = {
       tech: ["Python", "HTML", "CSS", "JavaScript", "React", "MySQL"],
       achievement: "Reduced application errors by 25%",
       responsibilities: [
-        "Collaborated with cross-functional teams to develop and maintain software applications.",
-        "Implemented robust backend features using Python and MySQL.",
-        "Designed responsive user interfaces using HTML, CSS, JavaScript, and React.",
-        "Identified and resolved complex bugs, improving overall system stability.",
-        "Participated in code reviews to ensure code quality and adherence to best practices.",
-        "Documented technical specifications and system architecture.",
-        "Optimized database queries for improved performance.",
-        "Assisted in deploying applications to production environments."
-      ]
-    }
+        "Reviewed and maintained application data, ensuring data integrity, consistency, and accuracy across web-based systems.",
+        "Performed quality assurance (QA) testing, reducing application errors by 25% while improving system reliability.",
+        "Managed frontend-backend data integration, collaborated with cross-functional teams, and supported process improvements through data verification and technical documentation.",
+      ],
+    },
   ],
   projects: [
     {
       title: "Sentiment-Based E-Commerce Product Rating System",
       tech: ["Python", "React", "MySQL"],
-      description: "An intelligent rating system that analyzes customer reviews using natural language processing to derive accurate product sentiment scores.",
-      features: ["NLP Analysis", "Real-time Dashboard", "Review Processing"],
+      description:
+        "Developed an AI-driven sentiment analysis system for 100+ customer reviews. Classifies feedback into Positive, Negative, and Neutral categories to improve product ratings and reduce manual review effort.",
+      features: ["AI Sentiment Analysis", "Review Classification", "Real-time Dashboard", "Product Rating", "Responsive UI"],
       metrics: [
         { label: "Accuracy", value: "+25%" },
         { label: "Reliability", value: "+30%" },
         { label: "Manual Work", value: "-40%" },
-        { label: "Speed", value: "2x Faster" }
+        { label: "Speed", value: "2x" },
       ],
       github: "https://github.com",
-      live: "https://example.com"
+      live: "https://example.com",
     },
     {
       title: "Multi-Agent AI Research System",
       tech: ["Python", "Generative AI", "LLMs"],
-      description: "A collaborative multi-agent architecture utilizing advanced LLMs to automate complex research workflows and synthesize comprehensive reports.",
-      features: ["Agent Collaboration", "Automated Research", "Report Synthesis"],
+      description:
+        "Built a multi-agent AI system to automate web search, content extraction, and report generation. Collects and analyzes data from 5+ online sources with 100% automated LLM-based evaluation.",
+      features: ["Multi-Agent Workflow", "Automated Research", "Content Extraction", "Report Generation", "LLM Evaluation"],
       metrics: [
         { label: "Research Time", value: "-85%" },
         { label: "Automation", value: "100%" },
         { label: "Throughput", value: "6x" },
-        { label: "Powered by", value: "AI" }
+        { label: "Sources/Query", value: "5+" },
       ],
       github: "https://github.com",
-      live: "https://example.com"
-    }
+      live: "https://example.com",
+    },
+    {
+      title: "Personal Portfolio Website",
+      tech: ["HTML", "CSS", "JavaScript", "React", "Framer Motion"],
+      description:
+        "Designed and developed this portfolio website from scratch using HTML, CSS, and JavaScript with React. Features glassmorphism UI, Framer Motion animations, dark mode, animated counters, 3D tilt cards, and a live contact form — built to stand out among the crowd.",
+      features: ["Framer Motion Animations", "Dark Mode Toggle", "3D Tilt Cards", "Typewriter Effect", "Live Contact Form", "Fully Responsive"],
+      metrics: [
+        { label: "Sections", value: "8+" },
+        { label: "Animations", value: "20+" },
+        { label: "Load Time", value: "<1s" },
+        { label: "Responsive", value: "100%" },
+      ],
+      github: "https://github.com",
+      live: "#home",
+    },
   ],
   certifications: [
     {
       title: "Generative AI Certification",
       organization: "Simplilearn",
       year: "2025",
-      topics: ["LLMs", "Generative AI", "Prompt Engineering", "AI Applications"]
+      topics: ["Generative AI Fundamentals", "Large Language Models", "Prompt Engineering", "AI Applications"],
     },
     {
       title: "Prompt Engineering for ChatGPT",
       organization: "Coursera",
       year: "2025",
-      topics: ["Prompt Design", "Response Evaluation", "Output Optimization"]
-    }
+      topics: ["Prompt Design", "AI Response Evaluation", "LLM Optimization"],
+    },
   ],
   education: [
     {
       degree: "Bachelor of Engineering in Computer Science and Engineering",
       university: "Visvesvaraya Technological University (VTU), Belagavi",
       cgpa: "8.2",
-      period: "2022–2026"
-    }
-  ]
+      period: "2022–2026",
+    },
+  ],
 };
