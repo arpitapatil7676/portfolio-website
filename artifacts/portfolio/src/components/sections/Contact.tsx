@@ -30,9 +30,10 @@ export function Contact() {
           access_key: WEB3FORMS_KEY,
           name: formData.get("name"),
           email: formData.get("email"),
-          subject: formData.get("subject"),
+          replyto: formData.get("email"),
+          subject: formData.get("subject") || "New message from Portfolio",
           message: formData.get("message"),
-          from_name: "Portfolio Contact Form",
+          from_name: formData.get("name") || "Portfolio Visitor",
         }),
       });
       const data = await res.json();
