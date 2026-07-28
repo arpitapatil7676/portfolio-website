@@ -43,13 +43,16 @@ export function Navbar() {
 
   const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    setMobileMenuOpen(false);
     const id = href.replace("#", "");
-    const el = document.getElementById(id);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
+    setMobileMenuOpen(false);
+    // Wait for mobile menu to finish closing before scrolling
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        const top = el.offsetTop - NAVBAR_HEIGHT;
+        window.scrollTo({ top, behavior: "smooth" });
+      }
+    }, 50);
   };
 
   return (
