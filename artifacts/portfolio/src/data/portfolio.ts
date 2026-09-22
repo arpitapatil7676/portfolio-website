@@ -9,7 +9,7 @@ export const portfolioData = {
   summary:
     "Python Developer with a strong foundation in Python Programming, Generative AI, and AI-assisted technologies. Experienced in building scalable Python applications and responsive user interfaces using HTML, CSS, JavaScript, and React. Demonstrated impact through AI-driven and automation projects, achieving up to 85% reduction in research time, 30% improvement in product rating reliability, and 25% reduction in application errors. Skilled in Prompt Engineering, AI model interaction, AI response evaluation, and developing reliable AI-powered applications, with working knowledge of AWS cloud fundamentals to support end-to-end, cloud-aware AI/ML solutions.",
   email: "arpitapatil7676@gmail.com",
-  linkedin: "https://linkedin.com/in/arpita-patil",
+  linkedin: "https://www.linkedin.com/in/arpita-patil-733794383/",
   github: "https://github.com/arpitapatil7676",
   resumeUrl: "/resume.pdf",
   aboutTags: [
@@ -99,8 +99,7 @@ export const portfolioData = {
         { label: "Load Time", value: "<1s" },
         { label: "Responsive", value: "100%" },
       ],
-      github: "https://github.com",
-      live: "#home",
+      github: "https://github.com/arpitapatil7676/portfolio-website",
     },
   ],
   certifications: [
