@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Code2, BrainCircuit, Wrench, Monitor, Lightbulb } from "lucide-react";
+import { Code2, BrainCircuit, Cloud, Monitor, Lightbulb } from "lucide-react";
 
 export function Skills() {
   const categories = [
     { title: "Programming Languages", icon: Code2, type: "bars" as const, data: portfolioData.skills.programming },
+    { title: "AI & Machine Learning", icon: BrainCircuit, type: "chips" as const, items: portfolioData.skills.aiml },
     { title: "Front-End Technologies", icon: Monitor, type: "chips" as const, items: portfolioData.skills.frontend },
-    { title: "Generative AI", icon: BrainCircuit, type: "chips" as const, items: portfolioData.skills.genAI },
-    { title: "AI Tools", icon: Wrench, type: "chips" as const, items: portfolioData.skills.tools },
-    { title: "Soft Skills", icon: Lightbulb, type: "chips" as const, items: portfolioData.skills.soft },
+    { title: "Cloud & Infrastructure", icon: Cloud, type: "chips" as const, items: portfolioData.skills.cloud },
+    { title: "Core Competencies", icon: Lightbulb, type: "chips" as const, items: portfolioData.skills.soft },
   ];
 
   return (

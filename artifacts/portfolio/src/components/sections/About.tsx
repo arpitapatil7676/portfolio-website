@@ -28,19 +28,24 @@ export function About() {
           >
             <div className="space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed font-mono">
               <p>
-                I'm a detail-oriented developer specialising in{" "}
-                <strong className="text-foreground">Python</strong> and{" "}
-                <strong className="text-foreground">Generative AI</strong>. I love building systems
-                that are not just functional — but intelligent and forward-thinking.
+                I'm a <strong className="text-foreground">Python Developer</strong> and{" "}
+                <strong className="text-foreground">AI & Full-Stack Enthusiast</strong> who enjoys
+                building practical, user-focused applications — from backend logic to frontend experience.
               </p>
               <p>
-                Whether I'm architecting multi-agent AI workflows, writing clean Python backends,
-                or crafting responsive interfaces with HTML, CSS, and React, I approach every
-                problem with curiosity and a commitment to quality.
+                I work with <strong className="text-foreground">Python, SQL, React.js, HTML, CSS, JavaScript, Git & GitHub</strong>,
+                with hands-on experience in <strong className="text-foreground">NLP</strong> and{" "}
+                <strong className="text-foreground">Prompt Engineering</strong>. I'm also exploring
+                Generative AI and local LLM workflows, focusing on integrating AI into real-world applications.
               </p>
               <p>
-                I'm a fresh graduate (B.E 2026) eager to grow alongside a team that values
-                impactful software and continuous learning.
+                Beyond tech, I've been actively involved in{" "}
+                <strong className="text-foreground">IEEE</strong>, college clubs, event coordination,
+                and anchoring — strengthening my{" "}
+                <strong className="text-foreground">leadership, teamwork, communication, and public-speaking</strong> skills.
+              </p>
+              <p className="text-foreground font-bold">
+                🎓 B.E. Computer Science & Engineering | VTU | 2026
               </p>
             </div>
 
@@ -92,10 +97,17 @@ export function About() {
                 </p>
                 <p className="pl-8">
                   self.roles = [<span className="text-green-600 dark:text-green-400">"Python Dev"</span>,{" "}
-                  <span className="text-green-600 dark:text-green-400">"Gen AI Eng"</span>]
+                  <span className="text-green-600 dark:text-green-400">"AI Enthusiast"</span>]
                 </p>
                 <p className="pl-8">
-                  self.location = <span className="text-green-600 dark:text-green-400">"India"</span>
+                  self.tech = [<span className="text-green-600 dark:text-green-400">"Python"</span>,{" "}
+                  <span className="text-green-600 dark:text-green-400">"React"</span>,{" "}
+                  <span className="text-green-600 dark:text-green-400">"SQL"</span>]
+                </p>
+                <p className="pl-8">
+                  self.beyond_code = [<span className="text-green-600 dark:text-green-400">"IEEE"</span>,{" "}
+                  <span className="text-green-600 dark:text-green-400">"Anchoring"</span>,{" "}
+                  <span className="text-green-600 dark:text-green-400">"Leadership"</span>]
                 </p>
                 <p className="pl-8">
                   self.open_to_work = <span className="text-primary font-bold">True</span>

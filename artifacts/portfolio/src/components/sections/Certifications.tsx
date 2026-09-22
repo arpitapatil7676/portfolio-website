@@ -1,6 +1,15 @@
 import { motion } from "framer-motion";
 import { portfolioData } from "@/data/portfolio";
-import { Award, CheckCircle2 } from "lucide-react";
+import { Award, ExternalLink, Building2 } from "lucide-react";
+
+const iconColors = [
+  "bg-primary",
+  "bg-blue-500",
+  "bg-purple-500",
+  "bg-green-500",
+  "bg-orange-500",
+  "bg-pink-500",
+];
 
 export function Certifications() {
   return (
@@ -14,46 +23,50 @@ export function Certifications() {
           className="mb-16"
         >
           <p className="font-mono text-sm font-bold text-primary uppercase tracking-widest mb-2">// 06</p>
-          <h2 className="text-4xl md:text-6xl font-black tracking-tight">Certifications</h2>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tight">Certifications &amp; Achievements</h2>
           <div className="h-1 w-24 bg-primary mt-4" />
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {portfolioData.certifications.map((cert, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              transition={{ duration: 0.45, delay: idx * 0.08 }}
               whileHover={{ x: -4, y: -4, transition: { duration: 0.15 } }}
-              className="bg-card border-2 border-foreground p-8 shadow-[6px_6px_0_0_rgba(0,0,0,0.85)] dark:shadow-[6px_6px_0_0_hsl(var(--primary))] hover:shadow-[8px_8px_0_0_rgba(0,0,0,0.85)] dark:hover:shadow-[8px_8px_0_0_hsl(var(--primary))] transition-all"
+              className="group bg-card border-2 border-foreground p-6 shadow-[4px_4px_0_0_rgba(0,0,0,0.85)] dark:shadow-[4px_4px_0_0_hsl(var(--primary))] hover:shadow-[7px_7px_0_0_rgba(0,0,0,0.85)] dark:hover:shadow-[7px_7px_0_0_hsl(var(--primary))] transition-all flex flex-col gap-4"
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className="p-3 bg-primary border-2 border-foreground">
-                  <Award className="h-7 w-7 text-primary-foreground" />
+              {/* Icon + org row */}
+              <div className="flex items-start gap-4">
+                <div className={`shrink-0 p-2.5 border-2 border-foreground ${iconColors[idx % iconColors.length]}`}>
+                  <Award className="h-5 w-5 text-white" />
                 </div>
-                <div className="text-right">
-                  <span className="font-mono text-sm font-bold text-muted-foreground">{cert.year}</span>
-                  <div className="flex items-center gap-1 text-xs text-green-600 dark:text-green-400 font-mono font-bold mt-1">
-                    <CheckCircle2 className="h-3 w-3" /> Verified
+                <div className="min-w-0">
+                  <h3 className="text-base font-black leading-snug line-clamp-2">{cert.title}</h3>
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <Building2 className="h-3.5 w-3.5 text-primary shrink-0" />
+                    <p className="text-primary font-bold font-mono text-xs truncate">{cert.organization}</p>
                   </div>
                 </div>
               </div>
 
-              <h3 className="text-xl font-black mb-1 leading-tight">{cert.title}</h3>
-              <p className="text-primary font-bold font-mono text-sm mb-6">{cert.organization}</p>
+              {/* Description */}
+              <p className="font-mono text-sm text-muted-foreground leading-relaxed flex-1">
+                {cert.description}
+              </p>
 
-              <div>
-                <p className="font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Topics Covered</p>
-                <div className="flex flex-wrap gap-2">
-                  {cert.topics.map((topic, i) => (
-                    <span key={i} className="text-xs px-3 py-1.5 border-2 border-foreground/30 bg-secondary font-mono font-bold hover:border-primary hover:bg-primary hover:text-primary-foreground transition-colors cursor-default">
-                      {topic}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              {/* View on LinkedIn */}
+              <a
+                href={cert.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 border-2 border-foreground bg-background font-mono text-sm font-bold hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all self-start"
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+                View on LinkedIn
+              </a>
             </motion.div>
           ))}
         </div>
